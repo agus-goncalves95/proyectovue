@@ -1,28 +1,34 @@
 <template> 
-  <div class="container">
+  <div class="container p-4">
+    <p>Seccion de tabla</p>
+      <div v-for="(persona,i) in personas" :key="i">
+       <p> {{ persona.nombre }} </p>
+       <p> {{ persona.edad }} </p>
+       <p> {{ persona.email}} </p>
+     </div>
     <!-- @submit.prevent="onSbubmit" -->
     <form action="">
       <div class="row">
         <div class="col col-12">
           <h4>Formulario contacto</h4>
-          <br><br>
+          <br>
 
            <!-- Input de Nombre -->
           <label for="inputNombre" class="text-start">Tu nombre</label>
-          <input v-model="nombre" type="text" class="form-control" id="inputNombre" placeholder="Nombre completo">
-          <p> Mi nombre es: {{ nombre }}</p>
+          <input v-model="inputNombre" type="text" class="form-control" id="inputNombre" placeholder="Nombre completo" required>
+              <div class="valid-feedback">
+              Looks good!
+            </div>
           <br>
 
           <!-- Input de Edad -->
           <label for="inputEdad" class="form-label text-start">Edad</label>
-          <input v-model.number="edad" type="number" class="form-control" id="inputEdad" placeholder="Edad">
-         <p> Mi edad es : {{ edad }}</p>
+          <input v-model.number="inputEdad" type="number" class="form-control" id="inputEdad" placeholder="Edad" required>
           <br>
 
           <!-- input de email -->
           <label for="inputEmail" class="form-label text-start">Email</label>
-          <input v-model="email" type="email" class="form-control" id="inputEmail" placeholder="tu@email.com">
-         <p> Mi email : {{ email }}</p>
+          <input v-model="inputEmail" type="email" class="form-control" id="inputEmail" placeholder="tu@email.com" required>
           <br>
 
          <!-- Select multiple de Estado -->
@@ -33,15 +39,6 @@
           <option value="2">Casado/a</option>
           <option value="3">Divorciado/a/</option>
           </select>
-          <p> Estado : {{ estado }} </p>
-          <br>
-
-          <!-- Select dinamico -->
-          <!-- <label  class="form-label text-start">Pais</label>
-          <select class="form-select" aria-label="Default select example" v-model="pais">
-           <option v-for="pais in listaPaises" :key="pais.id" :value="pais.id"> {{ pais.pais }}</option>
-          </select>
-           <p> Pais: {{ pais.pais }}</p> -->
           <br>
 
             <!-- Checkbox lenguajes -->
@@ -56,7 +53,7 @@
               </div>
 
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="react" id="checkReact"  v-model="lenguajes">
+                <input class="form-check-input" type="checkbox" value="react" id="checkReact"  v-model="lenguajes"> 
                 <label class="form-check-label" for="checkReact">
                   React
                 </label>
@@ -76,14 +73,12 @@
                 </label>
               </div>
             </div>
-            <p> Lenguajes: {{ lenguajes }} </p>
           </div>
           <br>
 
             <!-- Campo de texto comentario -->
           <label for="areaComentarios" class="form-label text-start">Comentarios</label>
           <textarea class="form-control" id="areaComentarios" rows="3" v-model="comentarios"></textarea>
-          <p> Esto es un comentario: {{ comentarios }}</p>
           <br>
 
           <div class="row">
@@ -101,22 +96,26 @@
               <label for="checkDNI">VISA</label>
             </div>
           </div>
-          <p> Tipo de documento: {{ documento }}</p>
           <hr>
           
           <div class="row">
             <br>
             <div class="col-10"></div>
             <br>
-            <div class="col-2">
-              <input type="submit" class="btn btn-primary" value="ENVIAR">
-            </div>
+              <div class="col-12">
+                <button @click="agregarATabla()" class="btn btn-primary" >Enviar formulario</button>
+              </div>
+
             <br>
           </div>
         </div>
       </div>
     </form>
   </div>
+
+
+
+
 </template>
 
 <script>
@@ -124,34 +123,26 @@ export default {
   name: 'FormularioWeb',
   data() {
     return {
-      nombre: " ",
-      edad: " ",
-      email: " ",
+      inputNombre: "",
+      inputEdad: "",
+      inputEmail: "",
       lenguajes: [],
-      comentarios: " ",
-      estado: " ",
-      documento: " ",
-      listaPaises: [
-         {
-           id: 'A',
-           pais: 'Argentina'
-         },
-         {
-           id: 'B',
-           pais: 'Uruguay'
-         },
-         {
-           id: 'C',
-           pais: 'Perú'
-         },
-         {
-           id: 'D',
-           pais: 'Colombia'
-         }
-       ]
-
+      comentarios: "",
+      estado: "",
+      documento: "",
+      personas: []
     }
   },
+  methods: {
+    agregarATabla(){
+        const newPersona = {
+          nombre: this.inputNombre,
+          edad: this.inputEdad,
+          email: this.inputEmail,
+        }
+       this.personas.push(newPersona); 
+    }
+  }
 }
 </script>
 

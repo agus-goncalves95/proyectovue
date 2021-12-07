@@ -4,6 +4,7 @@ import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css' //Vuesax styles
 import "bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
+import VueForm from 'vue-form'
 
 
 
@@ -11,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 Vue.use(Vuesax, {
   // options here
 })
+Vue.use(VueForm)
 
 Vue.config.productionTip = false
 

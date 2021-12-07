@@ -48,7 +48,7 @@ export default {
     Carrito,
     Login,
     Register,
-    Formulario
+    Formulario,
   },
   data() {
     return {
