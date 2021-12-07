@@ -22,7 +22,7 @@
         />
       </div>
     </div>
-
+    <Formulario/>
   </div>
 </template>
 
@@ -34,6 +34,7 @@ import CardContainer from './components/Cardcontainer.vue'
 import Carrito from './components/Carrito.vue'
 import Login from './Login.vue'
 import Register from './Register.vue'
+import Formulario from './components/FormularioWeb.vue'
 
 
 
@@ -46,7 +47,8 @@ export default {
     CardContainer,
     Carrito,
     Login,
-    Register
+    Register,
+    Formulario
   },
   data() {
     return {
